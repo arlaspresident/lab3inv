@@ -12,34 +12,38 @@ export default function App() {
 
   return (
     <div>
-      <nav style={{ display: "flex", gap: 12, padding: 12, borderBottom: "1px solid #ddd", flexWrap: "wrap" }}>
-        <Link to="/">Home</Link>
-        <Link to="/products">Products</Link>
+      <nav className="nav">
+        <Link to="/">Hem</Link>
+        <Link to="/products">Produkter</Link>
 
-        {!isLoggedIn ? (
-          <Link to="/login">Login</Link>
-        ) : (
-          <>
-            <Link to="/admin">Admin</Link>
-            <button onClick={logout}>Logout</button>
-          </>
-        )}
+        <div style={{ marginLeft: "auto", display: "flex", gap: 12, flexWrap: "wrap" }}>
+          {!isLoggedIn ? (
+            <Link to="/login">Logga in</Link>
+          ) : (
+            <>
+              <Link to="/admin">Administration</Link>
+              <button onClick={logout}>Logga ut</button>
+            </>
+          )}
+        </div>
       </nav>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductDetails />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <Admin />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <main className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </main>
     </div>
   );
 }
