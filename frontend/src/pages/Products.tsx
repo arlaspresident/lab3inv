@@ -16,23 +16,37 @@ export default function Products() {
   }, []);
 
   return (
-    <div style={{ padding: 16 }}>
-      <h1>Produkter</h1>
+    <div>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+        <div>
+          <h1 style={{ margin: 0 }}>Produkter</h1>
+          <p style={{ margin: "6px 0 0", color: "var(--muted)" }}>
+            Klicka på en produkt för att se detaljer.
+          </p>
+        </div>
+        <span className="badge">{items.length} st</span>
+      </div>
 
       {loading && <p>Laddar…</p>}
-      {error && <p style={{ color: "crimson" }}>Fel: {error}</p>}
+      {error && <p className="error">Fel: {error}</p>}
+      {!loading && !error && items.length === 0 && <p>Inga produkter hittades.</p>}
 
-      {!loading && !error && items.length === 0 && (
-        <p>Inga produkter hittades</p>
-      )}
-
-      <ul>
+      <div className="grid">
         {items.map((p) => (
-          <li key={p.id}>
-            <Link to={`/products/${p.id}`}>{p.name}</Link> — antal {p.quantity}
-          </li>
+          <div key={p.id} className="productCard">
+            <h3>{p.name}</h3>
+
+            <div className="productMeta">
+              <span>Antal: {p.quantity}</span>
+              <span>Pris: {p.price} kr</span>
+            </div>
+
+            <Link className="button secondary" to={`/products/${p.id}`}>
+              Visa detaljer
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
