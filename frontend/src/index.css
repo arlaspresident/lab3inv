@@ -247,3 +247,49 @@ li {
   cursor: pointer;
 }
 
+/*admin layout*/
+.admin-grid{
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+@media (max-width: 900px){
+  .admin-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/*knapp varianter*/
+.button.danger{
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid rgba(255,77,77,0.5);
+}
+
+.button.danger:hover{
+  background: rgba(255,77,77,0.12);
+}
+
+
+.admin-item{
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+}
+
+.admin-item-title{
+  display:flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-actions{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}

@@ -51,7 +51,7 @@ export default function Login() {
           />
         </label>
 
-        {error && <p style={{ color: "crimson" }}>Fel: {error}</p>}
+        {error && <div className="notice error"><strong>Fel:</strong> {error}</div>}
 
         <button type="submit" disabled={loading}>
           {loading ? "Loggar in…" : "Logga in"}
